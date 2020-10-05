@@ -71,7 +71,7 @@ const listSeparator = () => {
       renderItem={({item}) =>
         <View style={styles.listcontainer}>
           <Text style={{fontSize:22}}>{item.text}, {item.amount}</Text>
-          <Text style={styles.delete} onPress={() => deleteItem(item.id)}> Bought</Text>
+          <Text style={styles.delete} onPress={() => deleteItem(item.id)}> Delete</Text>
       </View>}
       data={shList}
       ItemSeparatorComponent={listSeparator}/>

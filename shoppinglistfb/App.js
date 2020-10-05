@@ -19,10 +19,10 @@ export default function App() {
 
 const[text, setText] = useState("");
 const[amount, setAmount] = useState("");
-const[shopList, addToList] = useState([]);
+const[items, addToList] = useState([]);
 
 const saveItem = () => {
-  firebase.database().ref('shopList/'+newKey).push({
+  firebase.database().ref('items/'+newKey).push({
     'text': text, 'amount': amount
   });
  setText("");
@@ -30,11 +30,11 @@ const saveItem = () => {
  }
 
 useEffect(() =>  {
- firebase.database().ref('shopList/').on('value', snapshot => {
+ firebase.database().ref('items/').on('value', snapshot => {
    const data = snapshot.val();
    const prods=Object.values(data);
    addToList(prods);
-   console.log(shopList);
+   console.log(items);
    console.log("start");
  });
 }, []);
@@ -71,7 +71,7 @@ const listSeparator = () => {
         <View style={styles.listcontainer}>
           <Text style={{fontSize:22}}>{item.text}, {item.amount}</Text>
       </View>}
-      data={shopList}
+      data={items}
       ItemSeparatorComponent={listSeparator}/>
 
       </View>
